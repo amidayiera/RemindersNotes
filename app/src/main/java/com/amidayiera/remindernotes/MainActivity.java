@@ -1,18 +1,40 @@
 package com.amidayiera.remindernotes;
 
+import android.content.ContentUris;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.CursorAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+//  1. CursorAdapter fits between a Cursor(data source) and the ListView (visual Representation)
+//  2. define adapter to describe process of projecting cursor's data into a view by overriding the
+//  newView and bindView methods - done in the AlarmCursorAdapter class
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    AlarmCursorAdapter mCursorAdapter;
+
+
+    private FloatingActionButton mAddReminderButton;
+    ListView reminderListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +42,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Reminders");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+        reminderListView = (ListView) findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        reminderListView.setEmptyView(emptyView);
+
+//        cursor adapter binds data.
+        AlarmCursorAdapter mCursorAdapter = new AlarmCursorAdapter(this, null);
+        reminderListView.setAdapter(mCursorAdapter);
+
+//
+        reminderListView.setOnClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
+
+                Intent intent = new Intent(MainActivity.this, AddReminderActivity.class);
+                Uri currentVehicleUri = ContentUris.withAppendedId(AlarmReminderContract.AlarmREminderEntry.CONTENT_URI, id);
+
+                // Set the URI on the data field of the intent
+                intent.setData(currentVehicleUri);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+        mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
+
+        mAddReminderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AddReminderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -51,5 +112,39 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        String[] projection = {
+                AlarmReminderContract.AlarmReminderEntry._ID,
+                AlarmReminderContract.AlarmReminderEntry.KEY_TITLE,
+                AlarmReminderContract.AlarmReminderEntry.KEY_DATE,
+                AlarmReminderContract.AlarmReminderEntry.KEY_TIME,
+                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT,
+                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO,
+                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE,
+                AlarmReminderConteact.AlarmReminderEntry.KEY_NOTES,
+                AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE
+         } ;
+        return new CursorLoader(this,   // Parent activity context
+                AlarmReminderContract.AlarmReminderEntry.CONTENT_URI,   // Provider content URI to query
+                projection,             // Columns to include in the resulting Cursor
+        null,                   // No selection clause
+    null,                   // No selection arguments
+                null);                  // Default sort order
+
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
+//        cursor = bunch of db query results
+        mCursorAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+        mCursorAdapter.swapCursor(null);
     }
 }
