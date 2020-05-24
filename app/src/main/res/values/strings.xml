@@ -10,4 +10,14 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="click_to_create_a_new_reminder">Click button to create a new reminder</string>
+    <string name="reminder_title">ReminderReminderReminderReminderReminderReminderReminderReminderReminderReminderReminderReminderReminderReminderReminder</string>
+    <string name="select_time">Select Time</string>
+    <string name="select_date">Select Date</string>
+    <string name="repeat">Repeat</string>
+    <string name="calendar">calendar</string>
+    <string name="repetition_intervals">Repetition Intervals</string>
+    <string name="repeat_every">Repeat Every</string>
+    <string name="alarm_on_or_off">Alarm on or off</string>
+    <string name="thumbnail_image">thumbnail image</string>
+    <string name="add_notes">Add Notes</string>
 </resources>
