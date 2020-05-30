@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".AddReminderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-
+        android:id="@+id/add_reminder_layout"
         android:background="@color/colorPrimary"
         android:paddingVertical="30sp"
         app:layout_constraintTop_toBottomOf="@id/reminder_title"
@@ -148,6 +149,48 @@
 
 
     </ScrollView>
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/add_reminder_layout"
+        android:background="@drawable/toolbar_dropshadow"
+        tools:ignore="MissingConstraints" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:onClick="selectFab1"
+        fab:fab_icon="@drawable/ic_notifications_off_grey600_24dp"
+        fab:fab_colorNormal="@color/colorPrimaryDark"
+        fab:fab_colorPressed="@color/fab_pressed"
+        app:fab_size="normal"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        tools:ignore="MissingConstraints"
+        android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="selectFab2"
+        fab:fab_icon="@drawable/ic_notifications_on_white_24dp"
+        fab:fab_colorNormal="@color/colorPrimary"
+        fab:fab_colorPressed="@color/fab_pressed"
+        app:fab_size="normal"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="168dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        tools:ignore="MissingConstraints"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
