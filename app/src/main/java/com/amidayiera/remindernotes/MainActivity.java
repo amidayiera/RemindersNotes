@@ -25,6 +25,9 @@ import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.amidayiera.remindernotes.data.AlarmReminderContract;
+
+
 //  1. CursorAdapter fits between a Cursor(data source) and the ListView (visual Representation)
 //  2. define adapter to describe process of projecting cursor's data into a view by overriding the
 //  newView and bindView methods - done in the AlarmCursorAdapter class
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     AlarmCursorAdapter mCursorAdapter;
 
 
-    private FloatingActionButton mAddReminderButton;
     ListView reminderListView;
 
     @Override
@@ -62,13 +64,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         AlarmCursorAdapter mCursorAdapter = new AlarmCursorAdapter(this, null);
         reminderListView.setAdapter(mCursorAdapter);
 
-//
-        reminderListView.setOnClickListener(new AdapterView.OnItemClickListener(){
+
+        reminderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Intent intent = new Intent(MainActivity.this, AddReminderActivity.class);
-                Uri currentVehicleUri = ContentUris.withAppendedId(AlarmReminderContract.AlarmREminderEntry.CONTENT_URI, id);
+
+                Uri currentVehicleUri = ContentUris.withAppendedId(AlarmReminderContract.ReminderNotesEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentVehicleUri);
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
 
-        mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton mAddReminderButton = findViewById(R.id.fab);
 
         mAddReminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,18 +121,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         String[] projection = {
-                AlarmReminderContract.AlarmReminderEntry._ID,
-                AlarmReminderContract.AlarmReminderEntry.KEY_TITLE,
-                AlarmReminderContract.AlarmReminderEntry.KEY_DATE,
-                AlarmReminderContract.AlarmReminderEntry.KEY_TIME,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO,
-                AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE,
-                AlarmReminderConteact.AlarmReminderEntry.KEY_NOTES,
-                AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE
+                AlarmReminderContract.ReminderNotesEntry._ID,
+                AlarmReminderContract.ReminderNotesEntry.KEY_TITLE,
+                AlarmReminderContract.ReminderNotesEntry.KEY_DATE,
+                AlarmReminderContract.ReminderNotesEntry.KEY_TIME,
+                AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT,
+                AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_NO,
+                AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_TYPE,
+                AlarmReminderContract.ReminderNotesEntry.KEY_NOTES,
+                AlarmReminderContract.ReminderNotesEntry.KEY_ACTIVE
          } ;
         return new CursorLoader(this,   // Parent activity context
-                AlarmReminderContract.AlarmReminderEntry.CONTENT_URI,   // Provider content URI to query
+                AlarmReminderContract.ReminderNotesEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
         null,                   // No selection clause
     null,                   // No selection arguments
