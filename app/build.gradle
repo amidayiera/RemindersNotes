@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.bignerdranch.android:recyclerview-multiselect:0.2'
     implementation 'com.wrapp.floatlabelededittext:library:0.0.6'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }
