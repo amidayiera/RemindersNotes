@@ -20,4 +20,6 @@
     <string name="alarm_on_or_off">Alarm on or off</string>
     <string name="thumbnail_image">thumbnail image</string>
     <string name="add_notes">Add Notes</string>
+    <string name="action_discard_reminder">Discard reminder</string>
+    <string name="action_save_reminder">Save Reminder</string>
 </resources>
