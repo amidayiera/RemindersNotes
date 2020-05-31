@@ -4,12 +4,12 @@
     tools:context="com.amidayiera.remindernotes.MainActivity">
 
 
-<item android:id="@+id/discard_reminder"
+<item android:id="@+id/action_discard_reminder"
     android:icon="@drawable/ic_delete"
     android:title="@string/action_discard_reminder"
     app:showAsAction="ifRoom" />
 
-<item android:id="@+id/save_reminder"
+<item android:id="@+id/action_save_reminder"
     android:icon="@drawable/ic_check"
     android:title="@string/action_save_reminder"
     app:showAsAction="ifRoom" />
