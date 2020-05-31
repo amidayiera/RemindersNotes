@@ -67,6 +67,7 @@
                 android:autofillHints="@string/select_date"
                 android:drawableStart="@drawable/ic_calendar"
                 android:drawablePadding="10sp"
+                android:onClick="setDate"
                 android:ems="15"
                 android:hint="@string/select_date"
                 android:inputType="date"
@@ -83,6 +84,7 @@
                 android:drawablePadding="10sp"
                 android:ems="15"
                 android:hint="@string/select_time"
+                android:onClick="setTime"
                 android:inputType=""
                 android:background="#004445"
                 android:textColorHint="@android:color/white" />
@@ -104,6 +106,7 @@
                     android:text="@string/repeat"
                     android:textColor="@android:color/white"
                     android:textColorHint="@android:color/white"
+                    android:onClick="onSwitchRepeat"
                     android:textSize="18sp" />
 
                 <Switch
@@ -127,6 +130,7 @@
                 android:text="@string/repetition_intervals"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
+                android:onClick="setRepeatNo"
                 android:textSize="18sp" />
 
             <TextView
@@ -141,6 +145,7 @@
                 android:text="@string/repeat_every"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
+                android:onClick="selectRepeatType"
                 android:textSize="18sp" />
 
             <EditText
