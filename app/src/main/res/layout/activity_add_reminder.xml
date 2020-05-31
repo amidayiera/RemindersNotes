@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/yellow"
+            android:background="#2c7873"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -31,18 +31,25 @@
         android:autofillHints="@string/reminder_title"
         android:hint="@string/reminder_title"
         android:inputType="textMultiLine"
-        android:paddingTop="80sp"
-        android:textColorHint="@color/mdtp_transparent_black"
+        android:paddingTop="60sp"
+        android:paddingBottom="20sp"
+        android:background="#FFD800"
+        android:textAlignment="textEnd"
+        android:textSize="21sp"
+        android:paddingEnd="5dp"
+        android:paddingStart="1dp"
+        android:textColorHint="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
         android:id="@+id/add_reminder_layout"
-        android:background="@color/colorPrimary"
-        android:paddingVertical="30sp"
+        android:background="#004445"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
         app:layout_constraintTop_toBottomOf="@id/reminder_title"
         tools:layout_editor_absoluteX="217dp">
 
@@ -63,6 +70,7 @@
                 android:ems="15"
                 android:hint="@string/select_date"
                 android:inputType="date"
+                android:background="#004445"
                 android:textColorHint="@android:color/white" />
 
             <EditText
@@ -76,6 +84,7 @@
                 android:ems="15"
                 android:hint="@string/select_time"
                 android:inputType=""
+                android:background="#004445"
                 android:textColorHint="@android:color/white" />
 
 
@@ -103,7 +112,8 @@
                     android:layout_height="39dp"
                     android:layoutDirection="ltr"
                     app:layout_constraintLeft_toRightOf="@id/repeat"
-                    app:switchPadding="8dp" />
+                    app:switchPadding="10dp" />
+
             </LinearLayout>
             <TextView
                 android:id="@+id/repetition_intervals"
@@ -143,18 +153,19 @@
                 android:drawablePadding="10sp"
                 android:ems="15"
                 android:hint="@string/add_notes"
+                android:background="#004445"
                 android:inputType="text"
                 android:textColorHint="@android:color/white" />
         </LinearLayout>
 
 
     </ScrollView>
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/add_reminder_layout"
-        android:background="@drawable/toolbar_dropshadow"
-        tools:ignore="MissingConstraints" />
+<!--    <view-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_below="@+id/add_reminder_layout"-->
+<!--        android:background="@drawable/toolbar_dropshadow"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/starred1"
@@ -165,8 +176,8 @@
         android:layout_marginEnd="24dp"
         android:clickable="true"
         android:onClick="selectFab1"
-        fab:fab_icon="@drawable/ic_notifications_off_grey600_24dp"
-        fab:fab_colorNormal="@color/colorPrimaryDark"
+        fab:fab_icon="@drawable/ic_notifications_off"
+        fab:fab_colorNormal="@color/colorAccent"
         fab:fab_colorPressed="@color/fab_pressed"
         app:fab_size="normal"
         android:layout_alignParentStart="true"
@@ -182,8 +193,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="selectFab2"
-        fab:fab_icon="@drawable/ic_notifications_on_white_24dp"
-        fab:fab_colorNormal="@color/colorPrimary"
+        fab:fab_icon="@drawable/ic_notifications_on"
+        fab:fab_colorNormal="@color/colorAccent"
         fab:fab_colorPressed="@color/fab_pressed"
         app:fab_size="normal"
         android:layout_alignParentStart="true"
