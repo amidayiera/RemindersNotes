@@ -21,14 +21,14 @@ public class AlarmReminderDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 //        create a string that contains the SQL statement to create the reminder table
         String SQL_CREATE_REMINDER_TABLE = "CREATE TABLE " + AlarmReminderContract.ReminderNotesEntry.TABLE_NAME + " ("
-                + AlarmReminderContract.ReminderNotesEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + AlarmReminderContract.ReminderNotesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + AlarmReminderContract.ReminderNotesEntry.KEY_TITLE + " TEXT NOT NULL, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_DATE  + " TEXT NOT NULL, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_TIME  + " TEXT NOT NULL, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT  + " TEXT NOT NULL, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_NO  + " TEXT NOT NULL, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_TYPE  + " TEXT NOT NULL, "
-                + AlarmReminderContract.ReminderNotesEntry.KEY_NOTES  + " TEXT NOT NULL, "
+                + AlarmReminderContract.ReminderNotesEntry.KEY_NOTES  + " TEXT, "
                 + AlarmReminderContract.ReminderNotesEntry.KEY_ACTIVE  + " TEXT NOT NULL" + ");";
 
 //        Execute SQL statement
