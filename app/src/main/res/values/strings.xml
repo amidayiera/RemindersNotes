@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReminderNotes</string>
+    <string name="app_name">Reminder Notes</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -10,11 +10,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="click_to_create_a_new_reminder">Click button to create a new reminder</string>
-    <string name="reminder_title">ReminderReminder ReminderReminder ReminderReminder ReminderReminder ReminderReminder ReminderReminder</string>
+    <string name="reminder_title">Enter Reminder title</string>
     <string name="select_time">Select Time</string>
     <string name="select_date">Select Date</string>
     <string name="repeat">Repeat</string>
-    <string name="calendar">calendar</string>
+    <string name="calendar">Calendar</string>
     <string name="repetition_intervals">Repetition Intervals</string>
     <string name="repeat_every">Repeat Every</string>
     <string name="alarm_on_or_off">Alarm on or off</string>
