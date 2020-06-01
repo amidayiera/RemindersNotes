@@ -14,45 +14,23 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         tools:ignore="MissingConstraints">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/yellow"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        app:layout_constraintRight_toLeftOf="@id/reminder_details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
-        android:visibility="visible"
-
-        />
 
     <LinearLayout
         android:id="@+id/reminder_details"
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_toStartOf="@+id/active_image"
-        android:layout_toEndOf="@id/checkbox"
         android:orientation="vertical"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        app:layout_constraintLeft_toRightOf="@id/checkbox"
         app:layout_constraintTop_toBottomOf="@id/appbar">
 
         <TextView
-            android:id="@+id/reminder_title"
+            android:id="@+id/recycle_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -62,34 +40,34 @@
             tools:text="Title" />
 
         <TextView
-            android:id="@+id/reminder_date_time"
+            android:id="@+id/recycle_date_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:text="Date and Time" />
+            tools:text="@string/repeat_date_and_time" />
 
         <TextView
-            android:id="@+id/reminder_repeat_info"
+            android:id="@+id/recycle_repeat_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:text="Repeat Number and Type" />
+            tools:text="@string/repeat_number_and_type" />
 
         <TextView
-            android:id="@+id/reminder_notes"
+            android:id="@+id/recycle_notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="false"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:text="Additional Notes" />
+            tools:text="@string/additional_notes" />
 
         <View
             android:layout_width="match_parent"
