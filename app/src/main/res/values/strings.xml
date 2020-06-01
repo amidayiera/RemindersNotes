@@ -2,13 +2,9 @@
     <string name="app_name">Reminder Notes</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="click_to_create_a_new_reminder">Click button to create a new reminder</string>
     <string name="reminder_title">Enter Reminder title</string>
     <string name="select_time">Select Time</string>
@@ -39,4 +35,10 @@
     <string name="reminder_saved">Reminder saved</string>
     <string name="error_updating_reminder">Error updating reminder</string>
     <string name="reminder_updated">Reminder updated</string>
+    <string name="text_every"> Every </string>
+    <string name="text_space"> </string>
+    <string name="text_s">(s)</string>
+    <string name="repeat_number_and_type">Repeat Number and Type</string>
+    <string name="additional_notes">Additional Notes</string>
+    <string name="repeat_date_and_time">Date and Time</string>
 </resources>
