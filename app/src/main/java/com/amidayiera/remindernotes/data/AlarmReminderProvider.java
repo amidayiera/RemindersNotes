@@ -13,8 +13,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Objects;
+
 //  helps to assess the data from the database
-//  ContentProvider : manages access to central repositroy of data.
+//  ContentProvider : manages access to central repository of data.
 //  One of your classes implements a subclass ContentProvider,
 //  which is the interface between your provider and other applications.
 //  Although content providers are meant to make data available to other applications,
@@ -78,7 +80,7 @@ public class AlarmReminderProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        cursor.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(), uri);
         return cursor;
     }
 
@@ -104,13 +106,10 @@ public class AlarmReminderProvider extends ContentProvider {
 //    get the column values to use. Return a content URI for the newly-inserted row
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
-        switch(match) {
-            case REMINDER:
-                return insertReminder(uri, contentValues);
-
-            default:
-                throw new IllegalArgumentException("Insertion is ont supported for " + uri);
+        if (match == REMINDER) {
+            return insertReminder(uri, contentValues);
         }
+        throw new IllegalArgumentException("Insertion is ont supported for " + uri);
     }
 
     private Uri insertReminder(Uri uri, ContentValues contentValues) {
@@ -122,7 +121,7 @@ public class AlarmReminderProvider extends ContentProvider {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
         }
-        getContext().getContentResolver().notifyChange(uri, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
 
         return ContentUris.withAppendedId(uri, id);
     }
@@ -150,7 +149,7 @@ public class AlarmReminderProvider extends ContentProvider {
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
         if (rowsDeleted != 0 ) {
-            getContext().getContentResolver().notifyChange(uri, null);
+            Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
         }
         return rowsDeleted;
     }
@@ -162,13 +161,15 @@ public class AlarmReminderProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch(match) {
             case REMINDER:
+                assert contentValues != null;
                 return updateReminder(uri, contentValues, selection, selectionArgs);
             case REMINDER_ID:
                 selection = AlarmReminderContract.ReminderNotesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                assert contentValues != null;
                 return updateReminder(uri, contentValues, selection, selectionArgs);
             default:
-                throw new IllegalArgumentException("Update is ont supported for " + uri);
+                throw new IllegalArgumentException("Update is not supported for " + uri);
         }
     }
 
@@ -182,7 +183,7 @@ public class AlarmReminderProvider extends ContentProvider {
         int rowsUpdated = database.update(AlarmReminderContract.ReminderNotesEntry.TABLE_NAME, contentValues, selection, selectionArgs);
 
         if (rowsUpdated != 0) {
-            getContext().getContentResolver().notifyChange(uri, null);
+            Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
         }
 
         return rowsUpdated;
