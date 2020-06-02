@@ -1,12 +1,12 @@
 package com.amidayiera.remindernotes;
 
-import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +16,9 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
+
+
+
 import com.amidayiera.remindernotes.data.AlarmReminderContract;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,15 +26,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 //  1. CursorAdapter fits between a Cursor(data source) and the ListView (visual Representation)
 //  2. define adapter to describe process of projecting cursor's data into a view by overriding the
 //  newView and bindView methods - done in the AlarmCursorAdapter class
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor>,
+        AdapterView.OnItemClickListener {
 
     AlarmCursorAdapter mCursorAdapter;
     ListView reminderListView;
 
-
     private static final int VEHICLE_LOADER = 0;
 
-    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +44,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setSupportActionBar(mToolbar);
         mToolbar.setTitle(R.string.app_name);
 
-
-        reminderListView = findViewById(R.id.list_view);
+        getSupportLoaderManager().initLoader(VEHICLE_LOADER, null, this);
+        reminderListView = (ListView) findViewById(R.id.list_view);
         View emptyView = findViewById(R.id.empty_view);
         reminderListView.setEmptyView(emptyView);
 
-        mCursorAdapter = new AlarmCursorAdapter(this, 0, null, null, null, 0) ;
+        mCursorAdapter = new AlarmCursorAdapter(this, R.layout.activity_reminders, null, null, null, 0) ;
         reminderListView.setAdapter(mCursorAdapter);
 
         reminderListView.setOnItemClickListener((adapterView, view, position, id) -> {
@@ -63,14 +66,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
 
-        @SuppressLint("CutPasteId") FloatingActionButton mAddReminderButton = findViewById(R.id.fab);
+        FloatingActionButton mAddReminderButton = findViewById(R.id.fab);
 
         mAddReminderButton.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), AddReminderActivity.class);
             startActivity(intent);
         });
-
-//        getLoaderManager().initLoader(VEHICLE_LOADER, null,  (android.app.LoaderManager.LoaderCallbacks<Object>) this );
 
     }
 
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT,
                 AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_NO,
                 AlarmReminderContract.ReminderNotesEntry.KEY_REPEAT_TYPE,
+                AlarmReminderContract.ReminderNotesEntry.KEY_NOTES,
                 AlarmReminderContract.ReminderNotesEntry.KEY_ACTIVE
 
         };
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         mCursorAdapter.swapCursor(cursor);
@@ -110,4 +113,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }

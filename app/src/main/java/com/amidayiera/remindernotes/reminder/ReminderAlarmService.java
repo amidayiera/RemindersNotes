@@ -64,7 +64,7 @@ public class ReminderAlarmService extends IntentService {
             }
         }
 
-        Notification note = new NotificationCompat.Builder(this)
+        Notification note = new NotificationCompat.Builder(this, "channelId")
                 .setContentTitle(getString(R.string.reminder_title))
                 .setContentText(description)
                 .setSmallIcon(R.drawable.ic_add_alert)
@@ -72,6 +72,7 @@ public class ReminderAlarmService extends IntentService {
                 .setAutoCancel(true)
                 .build();
 
+        assert manager != null;
         manager.notify(NOTIFICATION_ID, note);
     }
 }

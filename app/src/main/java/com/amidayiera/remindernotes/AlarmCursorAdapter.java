@@ -37,7 +37,7 @@ class AlarmCursorAdapter<TextDrawable, ColorGenerator> extends CursorAdapter {
         mRepeatInfoText = view.findViewById(R.id.recycle_repeat_info);
         mActiveImage = view.findViewById(R.id.active_image);
         mNotesText = view.findViewById(R.id.recycle_notes);
-        mThumbnailImage = view.findViewById(R.id.thumbnail_image);
+//        mThumbnailImage = view.findViewById(R.id.thumbnail_image);
 
         int titleColumnIndex = cursor.getColumnIndex(AlarmReminderContract.ReminderNotesEntry.KEY_TITLE);
         int dateColumnIndex = cursor.getColumnIndex(AlarmReminderContract.ReminderNotesEntry.KEY_DATE);
@@ -98,7 +98,7 @@ class AlarmCursorAdapter<TextDrawable, ColorGenerator> extends CursorAdapter {
         // Create a circular icon consisting of  a random background colour and first letter of title
 //        mDrawableBuilder = TextDrawable.builder()
 //                .buildRound(letter, color);
-        mThumbnailImage.setImageDrawable((Drawable) mDrawableBuilder);
+//        mThumbnailImage.setImageDrawable((Drawable) mDrawableBuilder);
     }
 
     private void setReminderRepeatInfo(String repeat, String repeatNo, String repeatType){

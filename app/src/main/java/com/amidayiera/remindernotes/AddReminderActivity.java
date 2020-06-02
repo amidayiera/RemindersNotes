@@ -88,6 +88,7 @@ public class AddReminderActivity extends AppCompatActivity implements
     private static final long milWeek = 604800000L;
     private static final long milMonth = 2592000000L;
 
+    @SuppressLint("ClickableViewAccessibility")
     private View.OnTouchListener mTouchListener = (view, motionEvent) -> {
         mVehicleHasChanged = true;
         return false;
@@ -112,6 +113,8 @@ public class AddReminderActivity extends AppCompatActivity implements
 //            setTitle(getString(R.string.editor_activity_title_new_reminder));
 //            trigger loader when current reminder uri is not known
 //            getLoaderManager().initLoader(EXISTING_VEHICLE_LOADER,null, (android.app.LoaderManager.LoaderCallbacks<Object>) this);
+
+            getSupportLoaderManager().initLoader(EXISTING_VEHICLE_LOADER, null, this);
         }
 
 
