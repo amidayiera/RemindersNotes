@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/black"
     android:layout_height="match_parent"
     tools:context=".AddReminderActivity">
 
@@ -11,24 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
-        tools:ignore="MissingConstraints"/>
+        tools:ignore="MissingConstraints">
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <EditText
         android:id="@+id/reminder_title"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:autofillHints="@string/reminder_title"
+        android:background="@android:color/white"
         android:hint="@string/reminder_title"
         android:inputType="textMultiLine"
-        android:paddingTop="60sp"
-        android:paddingBottom="20sp"
-        android:background="@android:color/white"
-        android:textAlignment="textEnd"
-        android:textSize="28sp"
-        android:paddingEnd="50dp"
-        android:textColor="@android:color/black"
+
         android:paddingStart="1dp"
+        android:paddingTop="60sp"
+        android:paddingEnd="50dp"
+        android:paddingBottom="20sp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
         android:textColorHint="@android:color/secondary_text_light_nodisable"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
@@ -51,114 +55,395 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/select_date"
                 android:layout_width="wrap_content"
-                android:layout_height="70sp"
-                android:layout_marginTop="10dp"
-                android:autofillHints="@string/select_date"
-                android:background="@android:color/black"
-                android:drawableStart="@drawable/ic_calendar"
-                android:drawablePadding="10sp"
-                android:ems="15"
+                android:layout_marginTop="8dp"
+                android:text="@string/details"
+                android:textAllCaps="true"
+                android:id="@+id/details"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
                 android:onClick="setDate"
-                android:text="@string/select_date"
-                android:textColor="@android:color/white" />
+                android:id="@+id/date"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp"
+                android:focusable="true">
 
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_calendar"
+                    android:contentDescription="@string/calendar"
+                    android:layout_centerVertical="true" />
 
-            <TextView
-                android:id="@+id/select_time"
-                android:layout_width="wrap_content"
-                android:layout_height="70sp"
-                android:layout_marginTop="10dp"
-                android:autofillHints="@string/select_time"
-                android:drawableStart="@drawable/ic_time"
-                android:drawablePadding="10sp"
-                android:ems="15"
-                android:text="@string/select_time"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/date_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/date_text"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/select_date"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="70sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:autofillHints="@string/select_date"-->
+<!--                android:background="@android:color/black"-->
+<!--                android:drawableStart="@drawable/ic_calendar"-->
+<!--                android:drawablePadding="10sp"-->
+<!--                android:ems="15"-->
+<!--                android:onClick="setDate"-->
+<!--                android:text="@string/select_date"-->
+<!--                android:textColor="@android:color/white" />-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
                 android:onClick="setTime"
-                android:inputType=""
-                android:background="@android:color/black"
-                android:textColor="@android:color/white" />
+                android:id="@+id/time"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp"
+                android:focusable="true">
 
-            <LinearLayout
-                android:layout_width="323dp"
-                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/time"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_time"
+                    android:layout_centerVertical="true" />
 
-                <TextView
-                    android:id="@+id/repeat"
-                    android:layout_width="280dp"
-                    android:layout_height="70sp"
-                    android:layout_marginTop="10dp"
-                    android:drawableStart="@drawable/ic_repeat"
-                    android:drawablePadding="10sp"
-                    android:ems="15"
-                    android:paddingVertical="20sp"
-                    android:text="@string/repeat"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    android:onClick="onSwitchRepeat"
-                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/time_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/time_text"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/select_time"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/select_time"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="70sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:autofillHints="@string/select_time"-->
+<!--                android:drawableStart="@drawable/ic_time"-->
+<!--                android:drawablePadding="10sp"-->
+<!--                android:ems="15"-->
+<!--                android:text="@string/select_time"-->
+<!--                android:onClick="setTime"-->
+<!--                android:inputType=""-->
+<!--                android:background="@android:color/black"-->
+<!--                android:textColor="@android:color/white" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="323dp"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/repeat"-->
+<!--                    android:layout_width="280dp"-->
+<!--                    android:layout_height="70sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:drawableStart="@drawable/ic_repeat"-->
+<!--                    android:drawablePadding="10sp"-->
+<!--                    android:ems="15"-->
+<!--                    android:paddingVertical="20sp"-->
+<!--                    android:text="@string/repeat"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textColorHint="@android:color/white"-->
+<!--                    android:onClick="onSwitchRepeat"-->
+<!--                    android:textSize="18sp" />-->
+
+<!--                <Switch-->
+<!--                    android:id="@+id/repeat_switch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="39dp"-->
+<!--                    android:layoutDirection="ltr"-->
+<!--                    app:layout_constraintLeft_toRightOf="@id/repeat"-->
+<!--                    app:switchPadding="10dp" />-->
+
+<!--            </LinearLayout>-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/reminder_repeat"
+                android:layout_height="72dp">
+
+                <ImageView
+                    android:id="@+id/repeat_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/repeat_every"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_repeat"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/repeat_ll"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/repeat_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/repeat_text"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repeat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/repeat"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
                 <Switch
                     android:id="@+id/repeat_switch"
                     android:layout_width="wrap_content"
-                    android:layout_height="39dp"
-                    android:layoutDirection="ltr"
-                    app:layout_constraintLeft_toRightOf="@id/repeat"
-                    app:switchPadding="10dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp"
+                    android:onClick="onSwitchRepeat"
+                    android:checked="true"
+                    android:textOn="@string/on"
+                    android:textOff="@string/off"
+                    android:layout_toEndOf="@id/repeat_icon"/>
 
-            </LinearLayout>
-            <TextView
-                android:id="@+id/repetition_intervals"
-                android:layout_width="wrap_content"
-                android:layout_height="70sp"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_replay"
-                android:drawablePadding="10sp"
-                android:ems="15"
-                android:paddingVertical="20sp"
-                android:text="@string/repetition_intervals"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
                 android:onClick="setRepeatNo"
-                android:textSize="18sp" />
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp"
+                android:focusable="true">
 
-            <TextView
-                android:id="@+id/repeat_every"
-                android:layout_width="wrap_content"
-                android:layout_height="70sp"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_subject"
-                android:drawablePadding="10sp"
-                android:ems="15"
-                android:paddingVertical="20sp"
-                android:text="@string/repeat_every"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
+                <ImageView
+                    android:id="@+id/repeat_no_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/repeat_every"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_replay"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/repeat_no_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/repeat_no"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repeat_every" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/repeat_every"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+<!--            <TextView-->
+<!--&lt;!&ndash;                android:id="@+id/repeat_every"&ndash;&gt;-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="70sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:drawableStart="@drawable/ic_subject"-->
+<!--                android:drawablePadding="10sp"-->
+<!--                android:ems="15"-->
+<!--                android:paddingVertical="20sp"-->
+<!--                android:text="@string/repeat_every"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:textColorHint="@android:color/white"-->
+<!--                android:onClick="selectRepeatType"-->
+<!--                android:textSize="18sp" />-->
+<!--          -->
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/RepeatType"
+                android:clickable="true"
                 android:onClick="selectRepeatType"
-                android:textSize="18sp" />
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp"
+                android:focusable="true">
 
-            <EditText
-                android:id="@+id/add_notes"
-                android:layout_width="wrap_content"
-                android:layout_height="70sp"
-                android:layout_marginTop="10dp"
-                android:autofillHints="@string/add_notes"
-                android:drawableStart="@drawable/ic_notes"
-                android:drawablePadding="10sp"
-                android:ems="15"
-                android:hint="@string/add_notes"
-                android:background="@android:color/black"
-                android:inputType="text"
-                android:textColorHint="@android:color/white" />
+                <ImageView
+                    android:id="@+id/repeat_type_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/repetition_intervals"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_subject"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/repeat_type_icon"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/repeat_type_text"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repetition_intervals" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/repetition_intervals"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/notes_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/repeat_every"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/ic_notes"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/notes_image"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/notes_text"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_notes"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:id="@+id/add_notes"
+                        android:textSize="15sp"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:autofillHints="@string/description"
+                        android:hint="@string/description"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ems="15"
+                        android:background="@android:color/black"
+                        android:textColorHint="@android:color/white" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+<!--            <EditText-->
+<!--                android:id="@+id/add_notes"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="70sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:autofillHints="@string/add_notes"-->
+<!--                android:drawableStart="@drawable/ic_notes"-->
+<!--                android:drawablePadding="10sp"-->
+<!--                android:ems="15"-->
+<!--                android:hint="@string/add_notes"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:background="@android:color/black"-->
+<!--                android:inputType="text"-->
+<!--                android:textColorHint="@android:color/white" />-->
         </LinearLayout>
     </ScrollView>
-<!--    <view-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="2dp"-->
-<!--        android:layout_below="@+id/add_reminder_layout"-->
-<!--        android:background="@drawable/toolbar_dropshadow"-->
-<!--        tools:ignore="MissingConstraints" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/starred1"
@@ -168,12 +453,13 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:backgroundTint="#02a8a8"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:clickable="true"
         android:focusable="true"
         android:onClick="selectFab1"
         android:src="@drawable/ic_notifications_off"
         tools:ignore="MissingConstraints"
+
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="104dp" />
 
@@ -184,7 +470,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="104dp"
-        android:backgroundTint="#02a8a8"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:clickable="true"
         android:focusable="true"
         android:onClick="selectFab2"
