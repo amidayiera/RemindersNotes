@@ -15,7 +15,7 @@
     <string name="repeat_every">Repeat Every</string>
     <string name="alarm_on_or_off">Alarm on or off</string>
     <string name="thumbnail_image">thumbnail image</string>
-    <string name="add_notes">Add Notes</string>
+    <string name="add_notes">Notes</string>
 
     <string name="action_discard_reminder">Discard reminder</string>
     <string name="action_save_reminder">Save Reminder</string>
@@ -35,10 +35,17 @@
     <string name="reminder_saved">Reminder saved</string>
     <string name="error_updating_reminder">Error updating reminder</string>
     <string name="reminder_updated">Reminder updated</string>
-    <string name="text_every"> Every </string>
-    <string name="text_space"> </string>
+    <string name="text_every">Every </string>
+    <string name="text_space">  </string>
     <string name="text_s">(s)</string>
     <string name="repeat_number_and_type">Repeat Number and Type</string>
     <string name="additional_notes">Additional Notes</string>
     <string name="repeat_date_and_time">Date and Time</string>
+    <string name="details">Details</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="enter_notes">Enter notes</string>
+    <string name="description">Description</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
 </resources>
